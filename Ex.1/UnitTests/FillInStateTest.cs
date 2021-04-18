@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System;
 
 namespace UnitTests
 {
@@ -21,14 +22,14 @@ namespace UnitTests
                 {
                     new DataLayer.Model.Book
                     {
-                        Author = "Prince", Title = "Life of musician" , Price = 23, Publisher = "Uninversal Records"
+                        AuthorFN = "Stephen", AuthorLN = "King", Title = "It" , Genre = "Horror", Price = 23.5m,  Publisher = "Uninversal Records", Pages = 276, ReleaseDate = new DateTime(2009, 05, 12), ISBN = 61804036
                     }
                 },
                 discountCodes: new List<DataLayer.Model.DiscountCode>
                 {
                     new DataLayer.Model.DiscountCode
                     {
-                         Code = "Testing", Amount = 3
+                         Code = "PromoCode", Amount = 30
                     }
                 });
 
