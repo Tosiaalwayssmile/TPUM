@@ -160,7 +160,7 @@
                         </StackPanel>
                     </ScrollViewer>
                     <Button Grid.Row="1" HorizontalAlignment="Center" Width="300" Content="Zasubskrybuj po zniżki"
-                        Command="{Binding SubscribeCommand}" />
+                        Command="{Binding FetchCurrentDiscountCodeCommand}" />
                 </Grid>
             </TabItem>
         </TabControl>
