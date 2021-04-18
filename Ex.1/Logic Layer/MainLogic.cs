@@ -4,11 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DataLayer;
 
 namespace LogicLayer
 {
     class MainLogic : Interfaces.IMainLogic
     {
+        private DataStore data = DataStore.Instance;
+
+        private static MainLogic _instance;
+        private static readonly object Padlock = new object();
+        public static MainLogic Instance
+        {
+            get
+            {
+                lock (Padlock)
+                {
+                    _instance ??= new MainLogic();
+                    return _instance;
+                }
+            }
+        }
+
+        private MainLogic() { }
+        
+
+
         public void FetchBooksCommand()
         {
             MessageBox.Show("Hallo Books");

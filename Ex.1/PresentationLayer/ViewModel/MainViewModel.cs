@@ -1,8 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using ViewLayer.Commands;
+using PresentationLayer.Commands;
+using LogicLayer;
 
-namespace ViewLayer.ViewModel
+namespace PresentationLayer.ViewModel
 {
     public class MainViewModel
     {
