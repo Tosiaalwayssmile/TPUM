@@ -5,4 +5,10 @@
     <RootNamespace>LogicLayer</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="PresentationFramework">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
