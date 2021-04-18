@@ -89,7 +89,7 @@
                                 <DataGridTextColumn
                                     Binding="{Binding Price}"
                                     Header="Cena"
-                                    Width="100" />
+                                    Width="50" />
                                 <DataGridTextColumn
                                     Binding="{Binding Publisher}"
                                     Header="Wydawca"
@@ -101,11 +101,11 @@
                                 <DataGridTextColumn
                                     Binding="{Binding ISBN}"
                                     Header="ISBN"
-                                    Width="100" />
+                                    Width="70" />
                                 <DataGridTextColumn
                                     Binding="{Binding Pages}"
                                     Header="Liczba stron"
-                                    Width="50" />
+                                    Width="100" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>
