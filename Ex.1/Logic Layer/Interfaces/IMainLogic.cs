@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataLayer.Model;
+using LogicLayer.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Interfaces
 {
-    interface IMainLogic
+    public interface IMainLogic
     {
-        public void FetchUsersCommand();
-        public void FetchBooksCommand();
-        public void FetchDiscountCodesCommand();
+        public IEnumerable<UserDTO> GetAllUsers();
+        public IEnumerable<BookDTO> GetAllBooks();
+        public IEnumerable<DiscountCodeDTO> GetAllDiscountCodes();
     }
 }

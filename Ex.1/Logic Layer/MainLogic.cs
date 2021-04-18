@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using DataLayer;
+using DataLayer.Repositories.Books;
+using DataLayer.Repositories.DiscountCodes;
+using DataLayer.Repositories.Users;
+using LogicLayer.DTOs;
 
 namespace LogicLayer
 {
     public class MainLogic : Interfaces.IMainLogic
     {
-        private DataStore data = DataStore.Instance;
+        private IBookRepository bookRepo;
+        private IUserRepository userRepo;
+        private IDiscountCodeRepository discountCodeRepo;
 
         private static MainLogic _instance;
         private static readonly object Padlock = new object();
@@ -26,23 +28,28 @@ namespace LogicLayer
             }
         }
 
-        private MainLogic() { }
-        
 
+        // METHODS
 
-        public void FetchBooksCommand()
+        // Constructor
+        private MainLogic()
         {
-            MessageBox.Show("Hallo Books");
+            bookRepo = new BookRepository(DataStore.Instance.State.Books);
+            userRepo = new UsersRepository(DataStore.Instance.State.Users);
+            discountCodeRepo = new DiscountCodeRepository(DataStore.Instance.State.DiscountCodes);
         }
 
-        public void FetchDiscountCodesCommand()
+        public IEnumerable<UserDTO> GetAllUsers()
         {
-            MessageBox.Show("Hallo Codes");
+            return userRepo.Items.Select(DTOMapper.User2DTO);
         }
-
-        public void FetchUsersCommand()
+        public IEnumerable<BookDTO> GetAllBooks()
         {
-            MessageBox.Show("Hallo Users");
+            return bookRepo.Items.Select(DTOMapper.Book2DTO);
+        }
+        public IEnumerable<DiscountCodeDTO> GetAllDiscountCodes()
+        {
+            return discountCodeRepo.Items.Select(DTOMapper.DiscountCode2DTO);
         }
     }
 }

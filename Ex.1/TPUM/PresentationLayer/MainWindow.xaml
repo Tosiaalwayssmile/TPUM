@@ -103,7 +103,7 @@
                                     Header="ISBN"
                                     Width="100" />
                                 <DataGridTextColumn
-                                    Binding="{Binding Pases}"
+                                    Binding="{Binding Pages}"
                                     Header="Liczba stron"
                                     Width="50" />
                             </DataGrid.Columns>
