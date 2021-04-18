@@ -127,12 +127,13 @@ namespace DataLayer
                         ISBN = 17934015
                     }
                 },
+                
                 discountCodes: new List<DiscountCode>
                 {
                     new DiscountCode {Code = "Black Friday", Amount = 50},
-                    new DiscountCode {Code = "Easter", Amount = 10},
-                    new DiscountCode {Code = "Chritmas Sale", Amount = 25}
-
+                    new DiscountCode {Code = "Summer", Amount = 20},
+                    new DiscountCode {Code = "Easter", Amount = 15},
+   
                 }
             );
         }

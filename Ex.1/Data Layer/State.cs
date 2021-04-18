@@ -9,7 +9,6 @@ namespace DataLayer
         {
             Books = books;
             Users = users;
-            DiscountCodes = discountCodes;
         }
 
         public IList<Book> Books { get; private set; }
