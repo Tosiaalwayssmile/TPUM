@@ -8,7 +8,7 @@ using DataLayer;
 
 namespace LogicLayer
 {
-    class MainLogic : Interfaces.IMainLogic
+    public class MainLogic : Interfaces.IMainLogic
     {
         private DataStore data = DataStore.Instance;
 

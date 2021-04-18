@@ -1,11 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using ViewLayer.Commands;
+using PresentationLayer.Commands;
+using LogicLayer;
 
-namespace ViewLayer.ViewModel
+namespace PresentationLayer.ViewModel
 {
     public class MainViewModel
     {
+        private MainLogic logic = MainLogic.Instance;
 
         public ICommand FetchUsersCommand => new Command(FetchUsers);
         public ICommand FetchBooksCommand => new Command(FetchBooks);
