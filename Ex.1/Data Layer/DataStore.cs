@@ -129,8 +129,9 @@ namespace DataLayer
                 },
                 discountCodes: new List<DiscountCode>
                 {
-                    new DiscountCode {Code = "Code1", Amount = 50},
-                    new DiscountCode {Code = "Code2", Amount = 10}
+                    new DiscountCode {Code = "Black Friday", Amount = 50},
+                    new DiscountCode {Code = "Easter", Amount = 10},
+                    new DiscountCode {Code = "Chritmas Sale", Amount = 25}
 
                 }
             );
