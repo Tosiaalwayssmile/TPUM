@@ -55,7 +55,7 @@ namespace DataLayer
                     {
                         AuthorFN = "Stephen",
                         AuthorLN = "King",
-                        Title = "Cmętarz zwieżąt",
+                        Title = "Cmentarz zwierząt",
                         Genre = "Horror",
                         Price = 26.99m,
                         Publisher = "Prószyński Media",
