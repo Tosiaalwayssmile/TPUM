@@ -142,6 +142,27 @@
                             Command="{Binding FetchDiscountCodesCommand}" Margin="10,15,626,15" />
                 </Grid>
             </TabItem>
+            <TabItem Header="Aktywne zniżki!" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="80" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="0" Margin="5" HorizontalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0 20 0 0">Zniżka dla subskrybentów:</TextBlock>
+                            <TextBlock FontSize="24" FontWeight="Bold" Foreground="Yellow" HorizontalAlignment="Center" Text="{Binding CurrentDiscountCode.Code}"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock FontSize="24" FontWeight="Bold" Foreground="MediumPurple" HorizontalAlignment="Center" Text="{Binding CurrentDiscountCode.Amount}"/>
+                                <TextBlock FontSize="24" FontWeight="Bold" Foreground="MediumPurple" HorizontalAlignment="Center" Text="%"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Grid.Row="1" HorizontalAlignment="Center" Width="300" Content="Zasubskrybuj po zniżki"
+                        Command="{Binding SubscribeCommand}" />
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
