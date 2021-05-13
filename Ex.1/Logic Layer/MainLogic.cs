@@ -24,7 +24,10 @@ namespace LogicLayer
             {
                 lock (Padlock)
                 {
-                    _instance ??= new MainLogic();
+                    _instance ??= new MainLogic(new BookRepository(DataStore.Instance.State.Books),
+                                                new UsersRepository(DataStore.Instance.State.Users),
+                                                new DiscountCodeRepository(DataStore.Instance.State.DiscountCodes));
+                    //_instance ??= new MainLogic();
                     return _instance;
                 }
             }
@@ -34,11 +37,12 @@ namespace LogicLayer
         // METHODS
 
         // Constructor
-        private MainLogic()
+
+        private MainLogic(IBookRepository bookRepository, IUserRepository userRepository, IDiscountCodeRepository discountCodeRepository)
         {
-            bookRepo = new BookRepository(DataStore.Instance.State.Books);
-            userRepo = new UsersRepository(DataStore.Instance.State.Users);
-            discountCodeRepo = new DiscountCodeRepository(DataStore.Instance.State.DiscountCodes);
+            bookRepo = bookRepository;
+            userRepo = userRepository;
+            discountCodeRepo = discountCodeRepository;
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
