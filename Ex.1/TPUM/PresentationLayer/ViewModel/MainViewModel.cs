@@ -7,7 +7,6 @@ using LogicLayer.DTOs;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using LogicLayer.Interfaces;
-using LogicLayer;
 using System;
 using System.Reactive;
 using System.Reactive.Linq;

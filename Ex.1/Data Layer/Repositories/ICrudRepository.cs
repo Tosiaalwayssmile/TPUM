@@ -12,6 +12,5 @@ namespace DataLayer.Repositories
         T Update(T item);
         void Delete(T item);
         void Delete(Guid id);
-
     }
 }

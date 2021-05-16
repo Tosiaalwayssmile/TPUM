@@ -16,33 +16,27 @@ namespace LogicLayer
         private IUserRepository userRepo;
         private IDiscountCodeRepository discountCodeRepo;
 
-        private static MainLogic _instance;
-        private static readonly object Padlock = new object();
         public static MainLogic Instance
         {
-            get
-            {
-                lock (Padlock)
-                {
-                    _instance ??= new MainLogic(new BookRepository(DataStore.Instance.State.Books),
-                                                new UsersRepository(DataStore.Instance.State.Users),
-                                                new DiscountCodeRepository(DataStore.Instance.State.DiscountCodes));
-                    //_instance ??= new MainLogic();
-                    return _instance;
-                }
-            }
+            get;
+            private set;
         }
 
 
         // METHODS
 
         // Constructor
-
         private MainLogic(IBookRepository bookRepository, IUserRepository userRepository, IDiscountCodeRepository discountCodeRepository)
         {
             bookRepo = bookRepository;
             userRepo = userRepository;
             discountCodeRepo = discountCodeRepository;
+        }
+
+        public static void Init(IBookRepository bookRepo, IUserRepository userRepo, IDiscountCodeRepository discRepo)
+        {
+            if (Instance == null)
+                Instance = new MainLogic(bookRepo, userRepo, discRepo);
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
