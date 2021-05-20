@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "..\UnitTests\U
 		{1D829174-5D42-49DA-A689-84E45CCCAA17} = {1D829174-5D42-49DA-A689-84E45CCCAA17}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{E16AA618-E990-45AD-A079-762F00C60D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{E16AA618-E990-45AD-A079-762F00C60D97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsocketServer", "WebsocketServer\WebsocketServer.csproj", "{E90F12D0-1636-4103-A221-5AB62D83D5E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{E16AA618-E990-45AD-A079-762F00C60D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E16AA618-E990-45AD-A079-762F00C60D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E16AA618-E990-45AD-A079-762F00C60D97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E90F12D0-1636-4103-A221-5AB62D83D5E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E90F12D0-1636-4103-A221-5AB62D83D5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E90F12D0-1636-4103-A221-5AB62D83D5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E90F12D0-1636-4103-A221-5AB62D83D5E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
