@@ -34,7 +34,7 @@ namespace LogicLayer
         private void RaiseTick(long counter)
         {
             DiscountCode discountCode = codeRepo.GetRandomDiscountCode();
-            Message?.Invoke(this, new Message(DTOMapper.DiscountCode2DTO(discountCode)));
+            Message?.Invoke(this, new Message());
         }
 
         public void Dispose()

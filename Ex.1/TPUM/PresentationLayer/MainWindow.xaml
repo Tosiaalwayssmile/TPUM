@@ -49,6 +49,8 @@
                     </ScrollViewer>
                     <Button Grid.Row="1" HorizontalAlignment="Center" Width="150" Height="50" Content="Pobierz użytkowników"
                             Command="{Binding FetchUsersCommand}" Margin="10,15,626,15" />
+                    <Button HorizontalAlignment="Left" Width="150" Height="50" Content="Połącz"
+                            Command="{Binding ConnectToWebsocketCommand}" Margin="169,15,0,15" Grid.Row="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="Książki">

@@ -1,4 +1,5 @@
 ﻿using LogicLayer.DTOs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace LogicLayer
 {
-    public class Message : EventArgs
+    public class Message
     {
-        public DiscountCodeDTO DiscountCode { get; private set; }
+        public string Action { get; set; }
+        public string Params { get; set; }
+        public string Body { get; set; }
+        public string Type { get; set; }
 
-        public Message(DiscountCodeDTO code)
+        public override string ToString()
         {
-            DiscountCode = code;
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

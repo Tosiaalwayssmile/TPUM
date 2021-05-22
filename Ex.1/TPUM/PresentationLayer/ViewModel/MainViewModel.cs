@@ -10,6 +10,11 @@ using LogicLayer.Interfaces;
 using System;
 using System.Reactive;
 using System.Reactive.Linq;
+using PresentationLayer.Websockets;
+using System.Diagnostics;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net.WebSockets;
 
 namespace PresentationLayer.ViewModel
 {
@@ -24,6 +29,8 @@ namespace PresentationLayer.ViewModel
         private DiscountCodeDTO _currentDiscountCode;
         private IObservable<EventPattern<Message>> _observable;
         private IDisposable _observer;
+        private SocketConnection _connection;
+        private WebsocketClient _websocketClient = new WebsocketClient("ws://localhost:9000/api");
 
 
         public ObservableCollection<UserDTO> Users
@@ -66,6 +73,7 @@ namespace PresentationLayer.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public ICommand ConnectToWebsocketCommand => new Command(CreateConnection);
         public ICommand FetchUsersCommand => new Command(FetchUsers);
         public ICommand FetchBooksCommand => new Command(FetchBooks);
         public ICommand FetchDiscountCodesCommand => new Command(FetchDiscountCodes);
@@ -80,31 +88,73 @@ namespace PresentationLayer.ViewModel
             _messagePublisher.Start();
         }
 
-        private void FetchUsers()
+        private async void CreateConnection()
         {
-            Users = new ObservableCollection<UserDTO>(logic.GetAllUsers());
-        }       
-        private void FetchBooks()
-        {
-            Books = new ObservableCollection<BookDTO>(logic.GetAllBooks());
-        }        
-        private void FetchDiscountCodes()
-        {
-            DiscountCodes = new ObservableCollection<DiscountCodeDTO>(logic.GetAllDiscountCodes());
+            _connection = await _websocketClient.Connect(OnMessageReceived);
         }
-        private void FetchCurrentDiscountCommand()
+        private async void FetchUsers()
         {
-            _observable = Observable.FromEventPattern<Message>(_messagePublisher, "Message");
-            _observer = _observable.Subscribe(UpdateCurrentCode);
+            if (_websocketClient.WebSocket.State == WebSocketState.Open)
+            {
+                Message messageSent = new Message() { Action = EndpointAction.GET_USERS.GetString() };
+                await _connection.SendAsync(messageSent.ToString());
+            }
         }
-        private void UpdateCurrentCode(EventPattern<Message> args)
+        private async void FetchBooks()
         {
-            CurrentDiscountCode = args.EventArgs.DiscountCode;
+            if (_websocketClient.WebSocket.State == WebSocketState.Open)
+            {
+                Message messageSent = new Message() { Action = EndpointAction.GET_BOOKS.GetString() };
+                await _connection.SendAsync(messageSent.ToString());
+            }
+        }
+        private async void FetchDiscountCodes()
+        {
+            if (_websocketClient.WebSocket.State == WebSocketState.Open)
+            {
+                Message messageSent = new Message() { Action = EndpointAction.GET_DISCOUNT_CODES.GetString() };
+                await _connection.SendAsync(messageSent.ToString());
+            }
+        }
+        private async void FetchCurrentDiscountCommand()
+        {
+            if (_websocketClient.WebSocket.State == WebSocketState.Open)
+            {
+                Message messageSent = new Message() { Action = EndpointAction.GET_DISCOUNT_CODES.GetString() };
+                await _connection.SendAsync(messageSent.ToString());
+            }
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void OnMessageReceived(string data)
+        {
+            Trace.WriteLine("RECEIVED:");
+            Trace.WriteLine(data);
+            Message message = JsonConvert.DeserializeObject<Message>(data);
+            Enum.TryParse(message.Action, out EndpointAction action);
+            switch (action)
+            {
+                case EndpointAction.GET_BOOKS:
+                    List<BookDTO> bookArray = JsonConvert.DeserializeObject<List<BookDTO>>(message.Body);
+                    Books = new ObservableCollection<BookDTO>(bookArray);
+                    break;
+                case EndpointAction.GET_USERS:
+                    List<UserDTO> userArray = JsonConvert.DeserializeObject<List<UserDTO>>(message.Body);
+                    Users = new ObservableCollection<UserDTO>(userArray);
+                    break;
+                case EndpointAction.GET_DISCOUNT_CODES:
+                    List<DiscountCodeDTO> discountArrays = JsonConvert.DeserializeObject<List<DiscountCodeDTO>>(message.Body);
+                    DiscountCodes = new ObservableCollection<DiscountCodeDTO>(discountArrays);
+                    break;
+                case EndpointAction.PUBLISH_DISCOUNT_CODE:
+                    DiscountCodeDTO code = JsonConvert.DeserializeObject<DiscountCodeDTO>(message.Body);
+                    CurrentDiscountCode = code;
+                    break;
+            }
         }
     }
 }

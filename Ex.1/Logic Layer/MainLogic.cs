@@ -16,10 +16,19 @@ namespace LogicLayer
         private IUserRepository userRepo;
         private IDiscountCodeRepository discountCodeRepo;
 
+        private static MainLogic _Instance;
         public static MainLogic Instance
         {
-            get;
-            private set;
+            get
+            {
+                if (_Instance == null)
+                    _Instance = new MainLogic(new BookRepository(DataStore.Instance.State.Books), new UsersRepository(DataStore.Instance.State.Users), new DiscountCodeRepository(DataStore.Instance.State.DiscountCodes));
+                return _Instance;
+            }
+            private set
+            {
+                _Instance = value;
+            }
         }
 
 
@@ -31,6 +40,7 @@ namespace LogicLayer
             bookRepo = bookRepository;
             userRepo = userRepository;
             discountCodeRepo = discountCodeRepository;
+            Instance = this;
         }
 
         public static void Init(IBookRepository bookRepo, IUserRepository userRepo, IDiscountCodeRepository discRepo)

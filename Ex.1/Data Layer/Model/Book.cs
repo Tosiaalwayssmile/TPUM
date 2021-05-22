@@ -23,6 +23,19 @@ namespace DataLayer.Model
 
         public int Pages { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            Book other = (Book)obj;
 
+            return (
+                string.Equals(Title, other.Title) &&
+                string.Equals(AuthorFN, other.AuthorFN) &&
+                string.Equals(AuthorLN, other.AuthorLN) &&
+                string.Equals(Genre, other.Genre) &&
+                string.Equals(Publisher, other.Publisher) &&
+                DateTime.Equals(ReleaseDate, other.ReleaseDate) &&
+                ISBN == other.ISBN &&
+                Pages == other.Pages);
+        }
     }
 }

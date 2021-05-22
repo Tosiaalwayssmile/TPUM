@@ -31,7 +31,11 @@ namespace WebsocketServer
             string body = JsonConvert.SerializeObject(code);
             MessageDTO message = new MessageDTO() { Action = EndpointAction.PUBLISH_DISCOUNT_CODE.GetString(), Type = "DiscountCodeDTO", Body = body };
             Console.WriteLine($"Promotion: {message}");
-            await _connection.SendAsync(JsonConvert.SerializeObject(message));
+            try
+            {
+                await _connection.SendAsync(JsonConvert.SerializeObject(message));
+            }
+            catch (Exception) { }
         }
     }
 }
