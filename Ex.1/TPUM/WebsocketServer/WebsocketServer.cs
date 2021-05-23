@@ -9,6 +9,8 @@ namespace WebsocketServer
 {
     public class WebsocketServer : IDisposable
     {
+        public static WebsocketServer Instance { get; private set; }
+
         private readonly Action<string> Log;
         private HttpListener _listener;
         private readonly string _address;
@@ -23,6 +25,7 @@ namespace WebsocketServer
             _listener.Prefixes.Add(address);
             _discountPublisher = new DiscountPublisher(TimeSpan.FromSeconds(10));
             _discountPublisher.Start();
+            Instance = this;
         }
 
         public async Task Listen()
@@ -79,6 +82,7 @@ namespace WebsocketServer
         public void Dispose()
         {
             Connections.ForEach(connection => connection?.Dispose());
+            Connections.Clear();
         }
     }
 }

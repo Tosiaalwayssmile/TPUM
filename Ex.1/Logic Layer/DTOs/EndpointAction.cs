@@ -12,7 +12,7 @@ namespace LogicLayer.DTOs
         GET_USERS = 1,
         GET_DISCOUNT_CODES = 2,
         PUBLISH_DISCOUNT_CODE = 3,
-
+        DISCONNECT = 4
     }
     public static class EndpointActionMethods
     {

@@ -47,11 +47,15 @@ namespace WebsocketServer
                     IEnumerable<DiscountCodeDTO> discountCodes = _discountCodeService.GetAllDiscountCodes();
                     response = new MessageDTO() { Action = EndpointAction.GET_DISCOUNT_CODES.GetString(), Body = JsonConvert.SerializeObject(discountCodes), Type = "Array:DiscountCode" };
                     break;
+
+                case EndpointAction.DISCONNECT:
+                    WebsocketServer.Instance.Dispose();
+                    response = new MessageDTO() { Action = EndpointAction.DISCONNECT.GetString(), Body = null, Type = "null" };
+                    break;
                 default:
                     throw new NotSupportedException("Requested action is not supported");
             }
             return JsonConvert.SerializeObject(response);
-
         }
     }
 }

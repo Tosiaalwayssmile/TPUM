@@ -53,7 +53,14 @@ namespace WebsocketServer
             string response = _requestResolver.Resolve(data);
             Log("Response: ");
             Log(response);
-            await SendAsync(response);
+            try
+            {
+                await SendAsync(response);
+            }
+            catch (ObjectDisposedException)
+            {
+                Log("Disposed");
+            }
         }
 
         public async Task SendAsync(string message)

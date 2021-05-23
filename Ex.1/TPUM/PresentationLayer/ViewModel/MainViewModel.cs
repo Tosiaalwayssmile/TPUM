@@ -27,8 +27,6 @@ namespace PresentationLayer.ViewModel
         private ObservableCollection<DiscountCodeDTO> _discountCodes;
         private MessagePublisher _messagePublisher;
         private DiscountCodeDTO _currentDiscountCode;
-        private IObservable<EventPattern<Message>> _observable;
-        private IDisposable _observer;
         private SocketConnection _connection;
         private WebsocketClient _websocketClient = new WebsocketClient("ws://localhost:9000/api");
 
@@ -74,6 +72,7 @@ namespace PresentationLayer.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand ConnectToWebsocketCommand => new Command(CreateConnection);
+        public ICommand DisconnectCommand => new Command(Disconnect);
         public ICommand FetchUsersCommand => new Command(FetchUsers);
         public ICommand FetchBooksCommand => new Command(FetchBooks);
         public ICommand FetchDiscountCodesCommand => new Command(FetchDiscountCodes);
@@ -91,6 +90,14 @@ namespace PresentationLayer.ViewModel
         private async void CreateConnection()
         {
             _connection = await _websocketClient.Connect(OnMessageReceived);
+        }
+        private async void Disconnect()
+        {
+            if (_websocketClient.WebSocket.State == WebSocketState.Open)
+            {
+                Message messageSent = new Message() { Action = EndpointAction.DISCONNECT.GetString(), Type = WebSocketMessageType.Close.ToString() };
+                await _connection.SendAsync(messageSent.ToString());
+            }
         }
         private async void FetchUsers()
         {

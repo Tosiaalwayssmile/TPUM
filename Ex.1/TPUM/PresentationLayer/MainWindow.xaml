@@ -51,6 +51,8 @@
                             Command="{Binding FetchUsersCommand}" Margin="10,15,626,15" />
                     <Button HorizontalAlignment="Left" Width="150" Height="50" Content="Połącz"
                             Command="{Binding ConnectToWebsocketCommand}" Margin="169,15,0,15" Grid.Row="1" />
+                    <Button HorizontalAlignment="Left" Width="150" Height="50" Content="Rozłącz"
+                            Command="{Binding DisconnectCommand}" Margin="324,15,0,15" Grid.Row="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="Książki">
