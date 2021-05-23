@@ -93,7 +93,6 @@ namespace UnitTests
             LogicLayer.MainLogic.Instance.AddBook(b);
             BookDTO b2 = LogicLayer.MainLogic.Instance.GetBook((Guid)b.Guid);
             Assert.AreEqual(b.Guid, b2.Guid);
-
         }
     }
 }

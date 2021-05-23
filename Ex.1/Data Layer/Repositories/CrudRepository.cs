@@ -38,7 +38,8 @@ namespace DataLayer.Repositories
         /// <returns> Created item</returns>
         public T Create(T item)
         {
-            item.Id = Guid.NewGuid();
+            if (item.Id == null)
+                item.Id = Guid.NewGuid();
             Items.Add(item);
             return item;
         }
