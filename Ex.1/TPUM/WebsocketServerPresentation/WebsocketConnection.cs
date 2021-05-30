@@ -3,8 +3,9 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WebsocketServerLogic;
 
-namespace WebsocketServerLogic
+namespace WebsocketServerPresentation
 {
     public class WebSocketConnection : IDisposable
     {

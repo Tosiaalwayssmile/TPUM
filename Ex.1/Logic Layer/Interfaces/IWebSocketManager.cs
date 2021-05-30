@@ -11,7 +11,7 @@ namespace LogicLayer.Interfaces
     {
         public delegate void Books(IList<BookDTO> booksList);
         public delegate void Users(IList<UserDTO> usersList);
-        public delegate void DicountCodes(IList<DiscountCodeDTO> codesList);
+        public delegate void DiscountCodes(IList<DiscountCodeDTO> codesList);
         public delegate void SingleDiscountCode(DiscountCodeDTO code);
 
         public void RecieveMessage(string message);
@@ -20,7 +20,7 @@ namespace LogicLayer.Interfaces
 
         public void AddOnBooksRecieve(Books method);
         public void AddOnUsersRecieve(Users method);
-        public void AddOnCodesRecieve(DicountCodes method);
+        public void AddOnCodesRecieve(DiscountCodes method);
         public void AddOnSingleCodeRecieve(SingleDiscountCode method);
 
         public void FetchUsers();

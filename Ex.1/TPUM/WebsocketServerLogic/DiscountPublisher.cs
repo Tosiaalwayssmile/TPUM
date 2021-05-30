@@ -1,12 +1,12 @@
 ﻿using System;
-using DataLayer.Repositories.DiscountCodes;
-using DataLayer.Observer;
+using WebsocketServerData;
+using WebsocketServerData.Observer;
+using WebsocketServerData.Repositories.DiscountCodes;
 using System.Reactive.Linq;
 using System.Reactive.Concurrency;
-using DataLayer;
-using DataLayer.Model;
+using WebsocketServerData.Model;
 
-namespace LogicLayer
+namespace WebsocketServerLogic
 {
     public class DiscountPublisher : IDisposable
     {

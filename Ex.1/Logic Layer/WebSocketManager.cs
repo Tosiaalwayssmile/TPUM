@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
-using LogicLayer.Websockets;
 using LogicLayer.DTOs;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using static LogicLayer.Interfaces.IWebSocketManager;
+using DataLayer.Websockets;
 
 namespace LogicLayer
 {
@@ -32,12 +32,8 @@ namespace LogicLayer
 
         public Books onBooksRecieve;
         public Users onUsersRecieve;
-        public DicountCodes onCodesRecieve;
+        public DiscountCodes onCodesRecieve;
         public SingleDiscountCode onSingleCodeRecieve;
-
-        private SocketConnection _connection;
-        private WebsocketClient _websocketClient = new WebsocketClient("ws://localhost:9000/api");
-
 
 
         private WebSocketManager()
@@ -45,19 +41,14 @@ namespace LogicLayer
             DataLayer.Model.WebSocketMessage.onMessageRecieved += RecieveMessage;
         }
 
-        public async void Connect()
+        public void Connect()
         {
-            _connection = await _websocketClient.Connect(DataLayer.Model.WebSocketMessage.OnMessageRecieved);
+            DataLayer.Model.WebSocketMessage.Connect();
         }
 
-        public async void Disconnect()
+        public void Disconnect()
         {
-            if (_websocketClient.WebSocket.State == WebSocketState.Open)
-            {
-                Message messageSent = new Message() { Action = EndpointAction.DISCONNECT.GetString(), Type = WebSocketMessageType.Close.ToString() };
-                await _connection.SendAsync(messageSent.ToString());
-                DataLayer.Model.WebSocketMessage.onMessageRecieved -= RecieveMessage;
-            }
+            DataLayer.Model.WebSocketMessage.Disconnect();
         }
 
         public void RecieveMessage(string data)
@@ -89,43 +80,27 @@ namespace LogicLayer
 
         public void AddOnBooksRecieve(Books method) => onBooksRecieve += method;
         public void AddOnUsersRecieve(Users method) => onUsersRecieve += method;
-        public void AddOnCodesRecieve(DicountCodes method) => onCodesRecieve += method;
+        public void AddOnCodesRecieve(DiscountCodes method) => onCodesRecieve += method;
         public void AddOnSingleCodeRecieve(SingleDiscountCode method) => onSingleCodeRecieve += method;
 
-        public async void FetchUsers()
+        public void FetchUsers()
         {
-            if (_websocketClient.WebSocket.State == WebSocketState.Open)
-            {
-                Message messageSent = new Message() { Action = EndpointAction.GET_USERS.GetString() };
-                await _connection.SendAsync(messageSent.ToString());
-            }
+            DataLayer.Model.WebSocketMessage.FetchUsers();
         }
 
-        public async void FetchBooks()
+        public void FetchBooks()
         {
-            if (_websocketClient.WebSocket.State == WebSocketState.Open)
-            {
-                Message messageSent = new Message() { Action = EndpointAction.GET_BOOKS.GetString() };
-                await _connection.SendAsync(messageSent.ToString());
-            }
+            DataLayer.Model.WebSocketMessage.FetchBooks();
         }
 
-        public async void FetchCodes()
+        public void FetchCodes()
         {
-            if (_websocketClient.WebSocket.State == WebSocketState.Open)
-            {
-                Message messageSent = new Message() { Action = EndpointAction.GET_DISCOUNT_CODES.GetString() };
-                await _connection.SendAsync(messageSent.ToString());
-            }
+            DataLayer.Model.WebSocketMessage.FetchCodes();
         }
 
-        public async void FetchSingleCode()
+        public void FetchSingleCode()
         {
-            if (_websocketClient.WebSocket.State == WebSocketState.Open)
-            {
-                Message messageSent = new Message() { Action = EndpointAction.GET_DISCOUNT_CODES.GetString() };
-                await _connection.SendAsync(messageSent.ToString());
-            }
+            DataLayer.Model.WebSocketMessage.FetchSingleCode();
         }
     }
 }

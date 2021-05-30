@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicLayer.DTOs
+namespace DataLayer.Websockets
 {
     public enum EndpointAction
     {
@@ -16,7 +16,6 @@ namespace LogicLayer.DTOs
     }
     public static class EndpointActionMethods
     {
-
         public static string GetString(this EndpointAction endpointAction)
         {
             return Enum.GetName(typeof(EndpointAction), endpointAction);

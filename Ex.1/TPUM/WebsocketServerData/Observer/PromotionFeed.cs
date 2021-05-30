@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DataLayer.Observer
+namespace WebsocketServerData.Observer
 {
     public class PromotionFeed : IObservable<PromotionEvent>, IPromotionFeed
     {

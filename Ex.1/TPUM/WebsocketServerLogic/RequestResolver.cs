@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using LogicLayer.DTOs;
-using LogicLayer.Services.BookService;
-using LogicLayer.Services.UserService;
-using LogicLayer.Services.DiscountCodeService;
+using WebsocketServerData.Websockets;
+using WebsocketServerLogic.DTOs;
+using WebsocketServerLogic.Services.BookService;
+using WebsocketServerLogic.Services.DiscountCodeService;
+using WebsocketServerLogic.Services.UserService;
 
 namespace WebsocketServerLogic
 {
-    class RequestResolver
+    public class RequestResolver
     {
         private readonly IUserService _userService;
         private readonly IBookService _booksService;

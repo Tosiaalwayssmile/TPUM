@@ -1,9 +1,9 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using DataLayer.Observer;
-using LogicLayer.DTOs;
-using LogicLayer;
+using WebsocketServerData;
+using WebsocketServerLogic.DTOs;
+using WebsocketServerData.Websockets;
+using WebsocketServerData.Observer;
 
 namespace WebsocketServerLogic
 {
