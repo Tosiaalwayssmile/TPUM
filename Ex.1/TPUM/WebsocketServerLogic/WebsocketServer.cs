@@ -29,7 +29,6 @@ namespace WebsocketServerLogic
 
         public async Task Listen()
         {
-
             try
             {
                 data.Listener.Start();

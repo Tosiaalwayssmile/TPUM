@@ -23,4 +23,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="OPC Generated Files\CodeGenProject.csproj" />
+  </ItemGroup>
+
 </Project>

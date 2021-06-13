@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><UANodeSet xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <NamespaceUris>
+        <Uri>TPUM</Uri>
+    </NamespaceUris>
+    <UAVariable AccessLevel="1" BrowseName="1:FirstName" DataType="i=12" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=FirstName" ValueRank="-2" WriteMask="0">
+        <DisplayName>FirstName</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=UserUser</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObject BrowseName="1:Cart" EventNotifier="0" NodeId="ns=1;s=Cart_User" WriteMask="0">
+        <DisplayName>Cart</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=UserUser</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=User_100000</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Books_100000</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Guid_100000</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">ns=1;s=Cart</Reference>
+        </References>
+    </UAObject>
+    <UAVariable AccessLevel="1" BrowseName="1:Guid" DataType="i=14" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Guid_User" ValueRank="-2" WriteMask="0">
+        <DisplayName>Guid</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=UserUser</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObject BrowseName="1:Books" EventNotifier="0" NodeId="ns=1;s=Books_100000" WriteMask="0">
+        <DisplayName>Books</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=Cart_User</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=58</Reference>
+        </References>
+    </UAObject>
+    <UAVariable AccessLevel="1" BrowseName="1:Guid" DataType="i=14" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Guid_Code" ValueRank="-2" WriteMask="0">
+        <DisplayName>Guid</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=DiscountCode</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType BrowseName="1:User" IsAbstract="false" NodeId="ns=1;s=UserUser" WriteMask="0">
+        <DisplayName>User</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=45">i=58</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Guid_User</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=FirstName</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=LastName</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Email</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Phone</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Cart_User</Reference>
+        </References>
+    </UAObjectType>
+    <UAObject BrowseName="1:User" EventNotifier="0" NodeId="ns=1;s=User_100000" WriteMask="0">
+        <DisplayName>User</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=Cart_User</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=58</Reference>
+        </References>
+    </UAObject>
+    <UAVariable AccessLevel="1" BrowseName="1:LastName" DataType="i=12" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=LastName" ValueRank="-2" WriteMask="0">
+        <DisplayName>LastName</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=UserUser</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable AccessLevel="1" BrowseName="1:Guid" DataType="i=14" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Guid_100000" ValueRank="-2" WriteMask="0">
+        <DisplayName>Guid</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=Cart_User</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable AccessLevel="1" BrowseName="1:Amount" DataType="i=50" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Amount" ValueRank="-2" WriteMask="0">
+        <DisplayName>Amount</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=DiscountCode</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObject BrowseName="1:Books" EventNotifier="0" NodeId="ns=1;s=Books" WriteMask="0">
+        <DisplayName>Books</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=Cart</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=58</Reference>
+        </References>
+    </UAObject>
+    <UAVariable AccessLevel="1" BrowseName="1:Phone" DataType="i=12" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Phone" ValueRank="-2" WriteMask="0">
+        <DisplayName>Phone</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=UserUser</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable AccessLevel="1" BrowseName="1:Email" DataType="i=12" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Email" ValueRank="-2" WriteMask="0">
+        <DisplayName>Email</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=UserUser</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObject BrowseName="1:User" EventNotifier="0" NodeId="ns=1;s=User" WriteMask="0">
+        <DisplayName>User</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=Cart</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=58</Reference>
+        </References>
+    </UAObject>
+    <UAObjectType BrowseName="1:Cart" IsAbstract="false" NodeId="ns=1;s=Cart" WriteMask="0">
+        <DisplayName>Cart</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=45">i=58</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=User</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Books</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Guid</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable AccessLevel="1" BrowseName="1:Guid" DataType="i=14" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Guid" ValueRank="-2" WriteMask="0">
+        <DisplayName>Guid</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=Cart</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable AccessLevel="1" BrowseName="1:Code" DataType="i=12" Historizing="0" MinimumSamplingInterval="0.000000" NodeId="ns=1;s=Code" ValueRank="-2" WriteMask="0">
+        <DisplayName>Code</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=47">ns=1;s=DiscountCode</Reference>
+            <Reference IsForward="true" ReferenceType="i=40">i=63</Reference>
+        </References>
+    </UAVariable>
+    <UAObjectType BrowseName="1:DiscountCode" IsAbstract="false" NodeId="ns=1;s=DiscountCode" WriteMask="0">
+        <DisplayName>DiscountCode</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="i=45">i=58</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Code</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Amount</Reference>
+            <Reference IsForward="true" ReferenceType="i=47">ns=1;s=Guid_Code</Reference>
+        </References>
+    </UAObjectType>
+</UANodeSet>
